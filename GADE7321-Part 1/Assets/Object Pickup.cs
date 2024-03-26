@@ -54,11 +54,21 @@ public class ObjectPickup : MonoBehaviour
                 carriedObject.transform.SetParent(transform); // Attach to player
                 carriedObject.transform.localPosition = objectOffset; // Set offset position
             }
-            else if (hit.collider.CompareTag("Waypoint") && carriedObject != null)
+            /*else if (hit.collider.CompareTag("Waypoint") && carriedObject != null)
             {
                 // Pass through the waypoint and earn a point only if carrying the object
                 EarnPoint();
-            }
+                
+            }*/
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Check if the player is carrying the object and passes through the waypoint
+        if (other.CompareTag("Waypoint") && carriedObject != null)
+        {
+            EarnPoint();
         }
     }
 
@@ -90,7 +100,7 @@ public class ObjectPickup : MonoBehaviour
     void ResetObjectPosition()
     {
         // Reset object position to initial position
-        carriedObject.transform.position = Vector3.zero; // Adjust this to the desired initial position
+        carriedObject.transform.position = Vector3.zero; 
     }
 
     void ResetPlayerPosition()

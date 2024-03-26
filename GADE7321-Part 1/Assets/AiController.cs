@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AIState
+public enum AIState  //3 different states
 {
     Capture,
     Chase,
@@ -60,6 +60,7 @@ public class AIController : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, playerFlag.position, Time.deltaTime * moveSpeed);
+            Debug.Log("Enemy is capturing your flag!!");
         }
     }
 
@@ -67,6 +68,7 @@ public class AIController : MonoBehaviour
     {
         // Move towards the player's position
         transform.position = Vector3.MoveTowards(transform.position, player.position, Time.deltaTime * moveSpeed);
+        Debug.Log("AI ENEMy is Chasing you!");
     }
 
     void ReturnToBase()
@@ -101,7 +103,7 @@ public class AIController : MonoBehaviour
         // If the AI is no longer colliding with the player, resume capturing or returning to base
         if (other.CompareTag("Player") && hasPlayerFlag)
         {
-            currentState = AIState.Capture; // Or AIState.ReturnToBase, depending on your logic
+            currentState = AIState.Capture; 
         }
     }
 }
